@@ -15,9 +15,13 @@
             <span>Current time:</span>
             <div class="clock"></div>
           </div>
-          <div class="col-sm-6">
+          <div class="col-sm-3">
             <span>Alarm time:</span>
             <div class="alarm"></div>
+          </div>
+          <div class="col-sm-3">
+            <span>Alarm 2 time:</span>
+            <div class="alarm-2"></div>
           </div>
         </div>
         <form class="alarm-form">
@@ -28,13 +32,26 @@
               <button class="btn btn-primary" type="submit">Set Alarm</button>
             </span>
           </div>
+        </form>
+
+        <form class="alarm-form-2">
+          <label for="alarm-time">Set alarm 2</label>
+          <div class="input-group col-sm-4">
+            <input class="form-control" id="user-input-time-2" type="time" value="12:00:00">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Set Alarm</button>
+            </span>
+          </div>
+        </form>
+
           <div class="alarm-alert">
             <div class="row">
               <img class="alarm-image img-rounded col-sm-6">
             </div>
-              <button class="btn btn-danger btn-lg col-sm-4" type="button" id="disable">Disable</button>
+              <button class="btn btn-danger btn-lg col-sm-3" type="button" id="disable">Disable</button>
+              <button class="btn btn-warning btn-lg col-sm-3" type="button" id="snooze">Snooze</button>
           </div>
-        </form>
+
       </div>
       <div class="weather-app row">
         <form class="weather-form">

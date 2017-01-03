@@ -1,8 +1,8 @@
-.clock, .alarm {
+.clock, .alarm, .alarm-2 {
   font-family: monospace;
   font-size: 40px;
 }
-.alarm {
+.alarm, .alarm-2 {
   color: darkblue;
 }
 .alarm-alert {
