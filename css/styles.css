@@ -8,3 +8,13 @@
 .alarm-alert {
   display: none;
 }
+.weather-app {
+  margin-top: 10em;
+}
+.weather-conditions {
+  font-size: 1.25em;
+  font-weight: bolder;
+}
+.weather-display {
+  display: none;
+}
