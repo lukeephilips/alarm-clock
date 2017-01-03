@@ -1,0 +1,10 @@
+.clock, .alarm {
+  font-family: monospace;
+  font-size: 40px;
+}
+.alarm {
+  color: darkblue;
+}
+.alarm-alert {
+  display: none;
+}
