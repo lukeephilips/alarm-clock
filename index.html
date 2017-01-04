@@ -54,22 +54,28 @@
 
       </div>
       <div class="weather-app row">
-        <form class="weather-form">
-          <label for="city">Which city do you want weather for?</label>
-          <div class="input-group col-sm-4">
-            <input class="form-control" id="user-input-location" type="text" placeholder="Portland, OR">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="submit">Check Weather</button>
-            </span>
-          </div>
-          <div class="weather-display">
-            <p>Today's forecast for <span class="weather-conditions" id="weather-name"></span>:</p>
-            <p>Description: <span class="weather-conditions" id="weather-description"></span></p>
-            <p>Temperature: <span class="weather-conditions" id="weather-temp"></span></p>
-            <p>Humidity: <span class="weather-conditions" id="weather-humidity"></span></p>
-
-          </div>
-        </form>
+        <div class="col-md-6">
+          <form class="weather-form">
+            <label for="city">Which city do you want weather for?</label>
+            <div class="input-group col-sm-8">
+              <input class="form-control" id="user-input-location" type="text" placeholder="Portland, OR">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Check Weather</button>
+              </span>
+            </form>
+            </div>
+            <div class="weather-display">
+              <span id='error'></span>
+              <p>Today's forecast for <span class="weather-conditions" id="weather-name"></span>:</p>
+              <p>Description: <span class="weather-conditions" id="weather-description"></span></p>
+              <p>Temperature: <span class="weather-conditions" id="weather-temp"></span></p>
+              <p>Humidity: <span class="weather-conditions" id="weather-humidity"></span></p>
+              <button class="btn btn-primary" type="button" id="new-map-info">Get Weather for Map Location</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+          <div id="map"></div>
+        </div>
       </div>
     </div>
   </body>

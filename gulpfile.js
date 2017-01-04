@@ -87,7 +87,7 @@ gulp.task('serve', function() {
 });
 
 gulp.task('jsBuild', ['jsBrowserify', 'jshint'], function(){
-  browswerSync.reload();
+  browserSync.reload();
 });
 
 gulp.task('bowerBuild', ['bower'], function(){

@@ -16,6 +16,22 @@ Alarm.prototype.randomAlert = function() {
 exports.alarmModule = Alarm;
 
 },{}],3:[function(require,module,exports){
+function weatherMap(latitude, longitude){
+  this.latitude = latitude;
+  this.longitude = longitude;
+  this.map = L.map('map', {
+    center: [this.latitude, this.longitude],
+    zoom: 9
+  });
+  this.tileLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(this.map);
+}
+
+exports.mapModule = weatherMap;
+
+},{}],4:[function(require,module,exports){
 var Alarm = require('./../js/alarm.js').alarmModule;
 
 $(document).ready(function() {
@@ -75,13 +91,38 @@ $(document).ready(function() {
 });
 
 var apiKey = require('./../.env').apiKey;
+var weatherMap = require('./../js/weather.js').mapModule;
 
 $(document).ready(function() {
+  var userMap = null;
+
   $(".weather-form").submit(function(event) {
     event.preventDefault();
     var location = $('#user-input-location').val();
     $('#user-input-location').val("");
-    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + apiKey + '&units=imperial', function(response) {
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=' + apiKey + '&units=imperial').then(function(response) {
+      $('.weather-display').show();
+      $('#weather-temp').text(response.main.temp);
+      $('#weather-description').text(response.weather[0].description);
+      $('#weather-humidity').text(response.main.humidity);
+      $('#weather-name').text(response.name);
+
+      $("#map").show();
+      var latitude = response.coord.lat;
+      var longitude = response.coord.lon;
+      userMap = new weatherMap(latitude, longitude);
+    }).fail(function(error){
+      $('#error').text(error.responseJSON.message);
+    });
+  });
+
+  $("#new-map-info").click(function(){
+    var coordinates = userMap.map.getCenter();
+    var coords = "lat=" + coordinates.lat.toFixed(2) + "&lon=" + coordinates.lng.toFixed(2);
+    console.log(coords);
+
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + coords + '&appid=' + apiKey + '&units=imperial', function(response) {
+      console.log(response.coord.lat+ " - " + response.coord.lon);
       $('.weather-display').show();
       $('#weather-temp').text(response.main.temp);
       $('#weather-description').text(response.weather[0].description);
@@ -91,4 +132,4 @@ $(document).ready(function() {
   });
 });
 
-},{"./../.env":1,"./../js/alarm.js":2}]},{},[3]);
+},{"./../.env":1,"./../js/alarm.js":2,"./../js/weather.js":3}]},{},[4]);
